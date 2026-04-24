@@ -27,7 +27,7 @@ namespace FileIOProject
             {
                 using (StreamReader sr = new StreamReader(path))
                 {
-                    
+                    // I am so lost
                 }
             }
             
