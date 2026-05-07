@@ -9,5 +9,9 @@ namespace FileIOProject
     public class Game
     {
         public Player? Player { get; set; } // why does it want it non nullable so bad?!
+        public Game (Player player)
+        {
+            this.Player = player;
+        }
     }
 }

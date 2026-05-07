@@ -9,5 +9,6 @@ namespace FileIOProject
     public class Player
     {
         public string? Name { get; set; }
+        public int Health { get; set; } = 100;
     }
 }
