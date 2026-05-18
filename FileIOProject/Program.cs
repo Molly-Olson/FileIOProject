@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using FileIOProject;
 
 namespace FileIOProject
 {
@@ -27,7 +28,8 @@ namespace FileIOProject
             {
                 using (StreamWriter writer = File.CreateText(path))
                 {
-                    writer.WriteLine("Sup dawg?");
+                    string jsonData = JsonSerializer.Serialize(player);
+                    writer.WriteLine(jsonData);
                 }
             }
             using StreamReader reader = File.OpenText(path);
@@ -41,3 +43,27 @@ namespace FileIOProject
         }
     }
 }
+
+//string path = @"C:\Temp\PlayerData.txt";
+
+//// ... (console input code remains the same)
+
+//Player player = new Player { Name = playerName };
+//Game game = new Game(player);
+
+//// Write player data to file (always, or only if you want to overwrite)
+//using (StreamWriter writer = File.CreateText(path))
+//{
+//    string jsonData = JsonSerializer.Serialize(player);
+//    writer.WriteLine(jsonData);
+//}
+
+//// Read and display the file contents
+//using (StreamReader reader = File.OpenText(path))
+//{
+//    string s;
+//    while ((s = reader.ReadLine()) != null)
+//    {
+//        Console.WriteLine(s);
+//    }
+//}
