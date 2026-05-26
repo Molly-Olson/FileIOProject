@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace FileIOProject
 {
-    internal class NPC
+    public class NPC : FSM.StateMachine
     {
-        public string Name { get; set; } = "NPC"; // do I still need get set here?
+        public string Name = "The Chad"; 
+ 
         public int Health { get; set; } = 100;
+
+        public NPC() : base(FSM.State.idle)
+        {
+        }
     }
 }

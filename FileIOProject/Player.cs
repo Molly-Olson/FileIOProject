@@ -6,9 +6,20 @@ using System.Threading.Tasks;
 
 namespace FileIOProject
 {
-    public class Player
+    public class Player : FSM.StateMachine
     {
-        public string? Name { get; set; }
-        public int Health { get; set; } = 100;
+        public string Name;
+        public int Health;
+        public Room location;
+        
+
+        public Player() : base(FSM.State.idle)
+        {
+        }
+        public Player(string Name, int Health) : base(FSM.State.idle)
+        {
+            this.Name = Name;
+            this.Health = Health;
+        }
     }
 }
