@@ -11,15 +11,18 @@ namespace FileIOProject
         public string Name;
         public int Health;
         public Room location;
-        
+        public List<Item> inventory = new List<Item>();
+
 
         public Player() : base(FSM.State.idle)
         {
+            this.Name = "{playerName}";
+            this.Health = 100;
         }
-        public Player(string Name, int Health) : base(FSM.State.idle)
+        public void Sleep()
         {
-            this.Name = Name;
-            this.Health = Health;
+            this.transition(FSM.State.sleeping);
+            Console.WriteLine($"{this.Name} is sleeping.");
         }
     }
 }

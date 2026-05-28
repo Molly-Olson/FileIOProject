@@ -19,6 +19,8 @@ namespace FileIOProject
             start.player = player;
             player.location = start;
             start.npc.Add(new NPC { Name = "The Chad" });
+            start.npc.Add(new NPC { Name = "Princess Pumpernickle"});
+            start.npc.Add(new NPC());
             //start.player.Add(new Player { Name = Console.ReadLine() }); I want the player to play too no?
 
             start.description = "Welcome to the thunderdome of file IO! This is the starting room. You see a door to the north and a door to the east.";
