@@ -10,7 +10,7 @@ namespace FileIOProject
    
     public class Command
     {
-        public void showInventory(Game game)
+        public void showInventory(Game game, List<Token> tokens)
         {
             Console.WriteLine("The Chad says, Woah! Check out your sick inventory bruh:");
             foreach (var item in game.Player.inventory)
@@ -111,17 +111,39 @@ namespace FileIOProject
         }
         public void useKey(Game game, List<Token> tokens)
         {
-            var Key = tokens[1];
-            var Lockable = tokens[2];
+            if (tokens.Count < 3)
+            {
+                Console.WriteLine("Bruh, what you doing?");
+                return;
+            }
+
+            var keyToken = tokens[1];
+            var lockableToken = tokens[2];
             var inv = game.Player.inventory;
 
-            var keyQuery = inv.Where<Item>((i) => i.types.Contains(ItemType.Key) && i.Name.Contains(Key.Value)).First();
+            var keyQuery = inv.Where<Item>((i) => i.types.Contains(ItemType.Key) && i.Name.Contains(keyToken.Value));
 
-            var lockableQuery = inv.Where<Item>((i) => i.types.Contains(ItemType.Lockable) && i.Name.Contains(Key.Value)).First();
+            var lockableQuery = inv.Where<Item>((i) => i.types.Contains(ItemType.Lockable) && i.Name.Contains(lockableToken.Value));
 
-            if (keyQuery is not null)
+            if (keyQuery.Any() && keyQuery is not null)
             {
-                //do stuff
+                var Key = keyQuery.First();
+                if (lockableQuery.Any() && lockableQuery is not null)
+                {
+                    Key.useKey(lockableQuery.First());
+
+                    //var Lockable = lockableQuery.First();
+                    //Console.WriteLine($"You used {Key.Name} on {Lockable.Name}. It worked! You opened the {Lockable.Name}.");
+                    //inv.Remove(Key);
+                    //inv.Remove(Lockable);
+                } else
+                {
+                    Console.WriteLine("You don't have that lockable item, bro.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You don't have that key, my dude.");
             }
         }
         public void quit(Game game, List<Token> tokens)

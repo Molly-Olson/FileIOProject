@@ -26,7 +26,7 @@ namespace FileIOProject.FSM
             CurrentState = toState;
             if(CurrentState == State.dead)
             {
-                
+                // dead code here
             }
         }
     }

@@ -21,7 +21,7 @@ namespace FileIOProject
         public string Description;
         //public ItemType Type;
 
-        int KeyId;
+        public int KeyId;
         bool isLocked = false;
 
         public List<ItemType> types = new List<ItemType>();

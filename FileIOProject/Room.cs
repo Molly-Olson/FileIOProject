@@ -8,16 +8,17 @@ namespace FileIOProject
 {
     public class Room
     {
-        public string Name;
-        public string description;
         public List<NPC> npc = new List<NPC>();
         public Player? player;
+        public string description;
         public Room? north;
         public Room? south;
         public Room? east;
         public Room? west;
 
         // items, treasure, traps...
-       // public List<Item> items = new List<Item>();  // not quite ready for this but I know this is where I am headed
+        public List<Item> items = new List<Item>(); 
+        public List<Trap> traps = new List<Trap>();
+        public List<Treasure> treasures = new List<Treasure>();
     }
 }

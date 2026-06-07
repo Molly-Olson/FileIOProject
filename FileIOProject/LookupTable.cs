@@ -19,6 +19,12 @@ namespace FileIOProject
             Add("look", c.look);
             Add("move", c.move);
             Add("die", c.die);
+            Add("sleep", c.sleep);
+            Add("useKey", c.useKey);
+            Add("unlock", c.useKey);
+            Add("show", c.showInventory);
+            //Add("stats", c.showStats);
+            Add("inventory", c.showInventory);
         }
     }
 }

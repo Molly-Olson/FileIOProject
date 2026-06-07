@@ -9,6 +9,7 @@ namespace FileIOProject
     {
         static void Main(string[] args)
         {
+
             bool loop = true;
 
             string path = @"C:\Temp\PlayerData.txt";
@@ -20,7 +21,8 @@ namespace FileIOProject
             Console.WriteLine("What is your name oh fine adventurer?");
             Console.WriteLine(" ----------------------------------------------------- ");
             Console.WriteLine();
-            
+
+            //player.Name = Console.ReadLine();  IDK why this wont work
             string playerName = Console.ReadLine();
 
             Player player = new Player { Name = playerName };
@@ -32,13 +34,10 @@ namespace FileIOProject
             Console.WriteLine(" ----------------------------------------------------- ");
 
 
-            if (File.Exists(path))
+            using (StreamWriter writer = File.CreateText(path)) //am I doing json twice now?
             {
-                using (StreamWriter writer = File.CreateText(path))
-                {
-                    string jsonData = JsonSerializer.Serialize(player);
-                    writer.WriteLine(jsonData);
-                }
+                string jsonData = JsonSerializer.Serialize(player);
+                writer.WriteLine(jsonData);
             }
             using StreamReader reader = File.OpenText(path);
             {
@@ -47,10 +46,14 @@ namespace FileIOProject
                 {
                     Console.WriteLine(s);
                 }
+
+
                 Console.WriteLine(" ----------------------------------------------------- ");
                 Console.WriteLine("Would you like to meet your opponent? (Y/N)");
                 Console.WriteLine(" ----------------------------------------------------- ");
                 string response = Console.ReadLine();
+
+
                 if (response.Equals("Y", StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine($"Say Hello to {nPC.Name}!");
@@ -62,7 +65,8 @@ namespace FileIOProject
                     {
                         Console.WriteLine("He said he wants to play a game with you!");
                     }
-                    else                    {
+                    else
+                    {
                         Console.WriteLine("He said he didn't want to play a game with you either, toots.");
                     }
                 }
@@ -76,6 +80,7 @@ namespace FileIOProject
                 {
                     Console.WriteLine(" ----------------------------------------------------- ");
                     Console.WriteLine("Whatdya wanna like do my dude?");
+                    Console.WriteLine("Type in a verb and a subject, like 'look room' or 'look npc' or 'look self' or 'attack npc' or 'attack self' or whatever you wanna do.");
                     Console.WriteLine(" ----------------------------------------------------- ");
                     var input = Console.ReadLine();
 
@@ -94,7 +99,8 @@ namespace FileIOProject
                         {
                             Console.WriteLine("Bruh IDK how to do that, try again.");
                         }
-                    } else
+                    }
+                    else
                     {
                         Console.WriteLine("I have no idea what you just said, bad verb dude.");
                     }
@@ -104,26 +110,3 @@ namespace FileIOProject
     }
 }
 
-//string path = @"C:\Temp\PlayerData.txt";
-
-//// ... (console input code remains the same)
-
-//Player player = new Player { Name = playerName };
-//Game game = new Game(player);
-
-//// Write player data to file (always, or only if you want to overwrite)
-//using (StreamWriter writer = File.CreateText(path))
-//{
-//    string jsonData = JsonSerializer.Serialize(player);
-//    writer.WriteLine(jsonData);
-//}
-
-//// Read and display the file contents
-//using (StreamReader reader = File.OpenText(path))
-//{
-//    string s;
-//    while ((s = reader.ReadLine()) != null)
-//    {
-//        Console.WriteLine(s);
-//    }
-//}
