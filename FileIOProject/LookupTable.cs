@@ -25,6 +25,7 @@ namespace FileIOProject
             Add("show", c.showInventory);
             //Add("stats", c.showStats);
             Add("inventory", c.showInventory);
+            Add("save", c.save);
         }
     }
 }

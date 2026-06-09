@@ -15,7 +15,7 @@ namespace FileIOProject
         Fire,
         Magic
     }
-    internal class Trap
+    public class Trap
     {
         public string Name;
         public string Description;

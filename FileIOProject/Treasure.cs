@@ -14,7 +14,7 @@ namespace FileIOProject
         MagicItem,
         Relic
     }
-    internal class Treasure
+    public class Treasure
     {
         public string Name;
         public string Description;

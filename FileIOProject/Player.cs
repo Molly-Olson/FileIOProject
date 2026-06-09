@@ -8,10 +8,10 @@ namespace FileIOProject
 {
     public class Player : FSM.StateMachine
     {
-        public string Name;
-        public int Health;
-        public Room location;
-        public List<Item> inventory = new List<Item>();
+        public string Name { get; set; }
+        public int Health { get; set; }
+        public Room location { get; set; }
+        public List<Item> inventory { get; set; } = new List<Item>();
 
 
         public Player() : base(FSM.State.idle)

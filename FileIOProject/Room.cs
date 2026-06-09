@@ -8,17 +8,22 @@ namespace FileIOProject
 {
     public class Room
     {
-        public List<NPC> npc = new List<NPC>();
-        public Player? player;
-        public string description;
-        public Room? north;
-        public Room? south;
-        public Room? east;
-        public Room? west;
+        public List<NPC> npcs { get; set; } 
+        public Player? player { get; set; }
+        public String description { get; set; }
+        public Room? north { get; set; }
+        public Room? south { get; set; }
+        public Room? east { get; set; }
+        public Room? west { get; set; }
 
-        // items, treasure, traps...
-        public List<Item> items = new List<Item>(); 
-        public List<Trap> traps = new List<Trap>();
-        public List<Treasure> treasures = new List<Treasure>();
+        public Room()
+        {
+            this.npcs = new List<NPC>();
+        }
+
+        // items, treasure, traps... I think this got messed up below
+        public List<Item> items { get; set; } = new List<Item>();
+        public List<Trap> traps { get; set; } = new List<Trap>();
+        public List<Treasure> treasures { get; set; } = new List<Treasure>();
     }
 }

@@ -30,7 +30,7 @@ namespace FileIOProject
             Console.WriteLine($"The Chad says, You can't attack {subject} right now, but maybe in the future you'll be able to!");
         }
         public void die(Game game, List<Token> tokens)
-                    {
+        {
             Console.WriteLine("The Chad says, Oh no! You died! Better luck next time.");
             game.Player.transition(FSM.State.dead);
             game.Player.Health = 0;
@@ -55,7 +55,7 @@ namespace FileIOProject
             Console.WriteLine(room.description);
             Console.WriteLine();
 
-            foreach(var npc in room.npc) // my thought was to use var character but idk now
+            foreach(var npc in room.npcs) // my thought was to use var character but idk now
             {
                 Console.WriteLine($"You see {npc.Description} here.");
             }
@@ -146,8 +146,16 @@ namespace FileIOProject
                 Console.WriteLine("You don't have that key, my dude.");
             }
         }
+        public void save(Game game, List<Token> tokens)
+        {
+            Console.WriteLine("The Chad says, Saving your progress, bro...");
+            Console.WriteLine("You are in " + game.Player.location.description + "and have " + game.Player.inventory.Count + " items in your inventory with, " + game.Player.Health + " health.");
+
+            game.save();
+        }
         public void quit(Game game, List<Token> tokens)
         {
+            game.save();
             Console.WriteLine("Peace out GirlScout! Ta-ta for now...");
             Environment.Exit(0);
         }

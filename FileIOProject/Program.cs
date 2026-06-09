@@ -11,41 +11,48 @@ namespace FileIOProject
         {
 
             bool loop = true;
+            Player player = new Player();
+            Game game = new Game(player);
 
-            string path = @"C:\Temp\PlayerData.txt";
+           // string path = @"C:\Temp\PlayerData.txt";
 
-            Console.WriteLine("Let's do some JSON file IO saving shall we?");
-            Console.WriteLine("Maybe...");
+            //Console.WriteLine("Let's do some JSON file IO saving shall we?");
+            //Console.WriteLine("Maybe...");
             Console.WriteLine();
             Console.WriteLine(" ----------------------------------------------------- ");
             Console.WriteLine("What is your name oh fine adventurer?");
             Console.WriteLine(" ----------------------------------------------------- ");
             Console.WriteLine();
 
-            //player.Name = Console.ReadLine();  IDK why this wont work
-            string playerName = Console.ReadLine();
+            player.Name = Console.ReadLine();
 
-            Player player = new Player { Name = playerName };
-            Game game = new Game(player);
-            NPC nPC = new NPC { Name = "The Chad" };
-
-            Console.WriteLine(" ----------------------------------------------------- ");
-            Console.WriteLine("Hello, " + playerName + "!");
-            Console.WriteLine(" ----------------------------------------------------- ");
-
-
-            using (StreamWriter writer = File.CreateText(path)) //am I doing json twice now?
+            try
             {
-                string jsonData = JsonSerializer.Serialize(player);
-                writer.WriteLine(jsonData);
+                game = game.load();
+            } catch (PlayerNotFoundException e) //why wont THIS shit work?!
+            {
+                Console.WriteLine("No player with that sick nomenclature yet dude(ette)! You're in there like swim wear now!!");
+                game.save();
             }
-            using StreamReader reader = File.OpenText(path);
-            {
-                string s;
-                while ((s = reader.ReadLine()) != null)
-                {
-                    Console.WriteLine(s);
-                }
+
+            Console.WriteLine(" ----------------------------------------------------- ");
+            Console.WriteLine("Pleaseure my dear, " + game.Player.Name + "!");
+            Console.WriteLine(" ----------------------------------------------------- ");
+
+            //using (StreamWriter writer = File.CreateText(path)) //am I doing json twice now?
+            //{
+            //    string jsonData = JsonSerializer.Serialize(player);
+            //    writer.WriteLine(jsonData);
+            //}
+            //using StreamReader reader = File.OpenText(path);
+            //{
+            //    string s;
+            //    while ((s = reader.ReadLine()) != null)
+            //    {
+            //        Console.WriteLine(s);
+            //    }
+
+            // I am seriously so fucking lost
 
 
                 Console.WriteLine(" ----------------------------------------------------- ");
@@ -56,9 +63,9 @@ namespace FileIOProject
 
                 if (response.Equals("Y", StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.WriteLine($"Say Hello to {nPC.Name}!");
+                    Console.WriteLine("Say Hello to The Chad!");
                     Console.WriteLine(" ----------------------------------------------------- ");
-                    Console.WriteLine($"{nPC.Name} wants to know if you want to play a game with him? (Y/N)");
+                    Console.WriteLine("He wants to know if you want to play a game with him? (Y/N)");
                     Console.WriteLine(" ----------------------------------------------------- ");
                     string response2 = Console.ReadLine();
                     if (response2.Equals("Y", StringComparison.OrdinalIgnoreCase))
@@ -67,13 +74,14 @@ namespace FileIOProject
                     }
                     else
                     {
-                        Console.WriteLine("He said he didn't want to play a game with you either, toots.");
+                        Console.WriteLine("The Chad don't want to play a game with you either, toots.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("He said he didn't want to meet you either.");
+                    Console.WriteLine("He said he didn't want to meet you either, grumpy.");
                 }
+
                 LookupTable lookupTable = new LookupTable();
 
                 while (loop)
@@ -105,8 +113,9 @@ namespace FileIOProject
                         Console.WriteLine("I have no idea what you just said, bad verb dude.");
                     }
                 }
-            }
+            
         }
     }
 }
+
 
