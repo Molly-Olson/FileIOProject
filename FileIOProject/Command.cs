@@ -51,7 +51,7 @@ namespace FileIOProject
         public void look(Game game, List<Token> tokens)
         {
             var room = game.Player.location;
-            Console.WriteLine("The Chad says, Look around dude, take it all in...");
+            //Console.WriteLine("The Chad says, Look around dude, take it all in...");
             Console.WriteLine(room.description);
             Console.WriteLine();
 
@@ -84,19 +84,19 @@ namespace FileIOProject
                 if(direction.Value == "north" && game.Player.location.north is not null)
                 {
                     game.Player.location = game.Player.location.north;
-                    Console.WriteLine("You moved north my dude.");
+                   // Console.WriteLine("You moved north my dude.");
                 } else if(direction.Value == "east" && game.Player.location.east is not null)
                 {
                     game.Player.location = game.Player.location.east;
-                    Console.WriteLine("You moved east my dude.");
+                   // Console.WriteLine("You moved east my dude.");
                 } else if(direction.Value == "south" && game.Player.location.south is not null)
                 {
                     game.Player.location = game.Player.location.south;
-                    Console.WriteLine("You moved south my dude.");
+                   // Console.WriteLine("You moved south my dude.");
                 } else if(direction.Value == "west" && game.Player.location.west is not null)
                 {
                     game.Player.location = game.Player.location.west;
-                    Console.WriteLine("You moved west my dude.");
+                   // Console.WriteLine("You moved west my dude.");
                 } else
                 {
                     Console.WriteLine("You can't go that way my dude.");

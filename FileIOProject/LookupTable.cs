@@ -20,7 +20,7 @@ namespace FileIOProject
             Add("move", c.move);
             Add("die", c.die);
             Add("sleep", c.sleep);
-            Add("useKey", c.useKey);
+            Add("usekey", c.useKey);
             Add("unlock", c.useKey);
             Add("show", c.showInventory);
             //Add("stats", c.showStats);

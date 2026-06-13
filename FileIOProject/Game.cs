@@ -90,7 +90,7 @@ namespace FileIOProject
 
             if (!File.Exists(path))
             {
-                throw new Exception("That's not a player dude.");
+                throw new PlayerNotFoundException("That's not a player dude.");
             }
 
             string jsondata;
