@@ -55,7 +55,12 @@ namespace FileIOProject
             Console.WriteLine(room.description);
             Console.WriteLine();
 
-            foreach(var npc in room.npcs) // my thought was to use var character but idk now
+            foreach (var item in room.items)
+            {
+                Console.WriteLine($"You see {item.Name} here. {item.Description}");
+            }
+
+            foreach (var npc in room.npcs) // my thought was to use var character but idk now
             {
                 Console.WriteLine($"You see {npc.Description} here.");
             }
@@ -74,6 +79,20 @@ namespace FileIOProject
             if (room.west is not null)
             {
                 Console.WriteLine("To the west, you see " + room.west.description);
+            }
+            if (tokens.Count > 1)
+            {
+                var itemToken = tokens[1];
+                var itemQuery = room.items.Where<Item>((i) => i.Name.Contains(itemToken.Value));
+                if (itemQuery.Any() && itemQuery is not null)
+                {
+                    var item = itemQuery.First();
+                    Console.WriteLine($"You see {item.Name} here. {item.Description}");
+                }
+                else
+                {
+                    Console.WriteLine("Aint nothin here, bro.");
+                }
             }
         }
         public void move(Game game, List<Token> tokens)
@@ -124,7 +143,10 @@ namespace FileIOProject
             var keyQuery = inv.Where<Item>((i) => i.types.Contains(ItemType.Key) && i.Name.Contains(keyToken.Value));
 
             var lockableQuery = inv.Where<Item>((i) => i.types.Contains(ItemType.Lockable) && i.Name.Contains(lockableToken.Value));
-
+            if (!lockableQuery.Any())
+            {
+                lockableQuery = game.Player.location.items.Where<Item>((i) => i.types.Contains(ItemType.Lockable) && i.Name.Contains(lockableToken.Value));
+            }
             if (keyQuery.Any() && keyQuery is not null)
             {
                 var Key = keyQuery.First();
@@ -144,6 +166,40 @@ namespace FileIOProject
             else
             {
                 Console.WriteLine("You don't have that key, my dude.");
+            }
+        }
+        public void pickUp(Game game, List<Token> tokens)
+        {
+            var itemToken = tokens[1];
+            var room = game.Player.location;
+            var itemQuery = room.items.Where<Item>((i) => i.Name.Contains(itemToken.Value));
+            if (itemQuery.Any() && itemQuery is not null)
+            {
+                var item = itemQuery.First();
+                game.Player.inventory.Add(item);
+                room.items.Remove(item);
+                Console.WriteLine($"You picked up {item.Name}. It has been added to your inventory.");
+            }
+            else
+            {
+                Console.WriteLine("That item isn't here, bro.");
+            }
+        }
+        public void drop(Game game, List<Token> tokens)
+        {
+            var itemToken = tokens[1];
+            var inv = game.Player.inventory;
+            var itemQuery = inv.Where<Item>((i) => i.Name.Contains(itemToken.Value));
+            if (itemQuery.Any() && itemQuery is not null)
+            {
+                var item = itemQuery.First();
+                inv.Remove(item);
+                game.Player.location.items.Add(item);
+                Console.WriteLine($"You dropped {item.Name}. It has been removed from your inventory.");
+            }
+            else
+            {
+                Console.WriteLine("You don't have that item, bro.");
             }
         }
         public void save(Game game, List<Token> tokens)

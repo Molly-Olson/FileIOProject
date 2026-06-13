@@ -35,6 +35,26 @@ namespace FileIOProject
             chest.Name = "a small wooden chest";
             chest.KeyId = 42;
 
+            Item sword = new Item();
+            sword.types.Add(ItemType.Weapon);
+            sword.Name = "old rusty sword";
+            sword.Description = "This rusty old sword is still sharp, dude!";
+            
+            Item potion = new Item();
+            potion.types.Add(ItemType.Consumable);
+            potion.Name = "magic healing potion";
+            potion.Description = "This potion will heal you up, bro! Chug it! Chug it! Chug it!";
+
+            Item knightSuit = new Item();
+            knightSuit.types.Add(ItemType.Armor);
+            knightSuit.Name = "a suit of knight's armor";
+            knightSuit.Description = "Woah check out this sweet armor! You gunna wear it my G? Cause I totally will if you don't want to!";
+
+            Item trap = new Item();
+            trap.types.Add(ItemType.Trap);
+            trap.Name = "a spiked pit trap";
+            trap.Description = "Watch your step, bro! You might fall into this spiked pit trap and lose some health!";
+
             player.inventory.Add(key);
             player.inventory.Add(chest);
 
@@ -45,6 +65,7 @@ namespace FileIOProject
             //start.npc.Add(new Character());
             //start.player.Add(new Player { Name = Console.ReadLine() }); I want the player to play too no?
 
+            _ = new Room();
             start.description = "Welcome to the starting room. You see a door to the north and a door to the east.";
 
             this.rooms.Add(start);
@@ -70,8 +91,33 @@ namespace FileIOProject
 
             this.rooms.Add(north);
 
+            Room south = new Room();
+            south.description = "This is the south room. It's pretty empty, but you can see a door to the north.";
+
+            this.rooms.Add(south);
+
+            Room northEast = new Room();
+            northEast.description = "This is the northeast room. It's pretty empty, but you can see a door to the south.";
+
+            this.rooms.Add(northEast);
+
+            Room west = new Room();
+            west.description = "This is the west room. It's pretty empty, but you can see a door to the east.";
+
+            this.rooms.Add(west);
+
+            start.north = north;
+            north.south = start;
             east.north = north;
             north.south = east;
+            west.north = northEast;
+            northEast.south = west;
+
+            north.items.Add(sword);
+            east.items.Add(potion);
+            northEast.items.Add(knightSuit);
+            west.items.Add(trap);
+
 
         }
         public Game load()

@@ -13,6 +13,7 @@ namespace FileIOProject
         Consumable,
         QuestItem,
         Key,
+        Trap,
         Lockable
     }
     public class Item

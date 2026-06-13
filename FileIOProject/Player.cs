@@ -10,6 +10,7 @@ namespace FileIOProject
     {
         public string Name { get; set; }
         public int Health { get; set; }
+        public int Strength { get; set; }
         public Room location { get; set; }
         public List<Item> inventory { get; set; } = new List<Item>();
 
@@ -18,6 +19,8 @@ namespace FileIOProject
         {
             this.Name = "{playerName}";
             this.Health = 100;
+            this.Strength = 10; // need to add things to make it change, like our potion or maybe add poisoned cake?
+            
         }
         public void Sleep()
         {

@@ -26,6 +26,10 @@ namespace FileIOProject
             //Add("stats", c.showStats);
             Add("inventory", c.showInventory);
             Add("save", c.save);
+            Add("pickup", c.pickUp);
+            Add("get", c.pickUp);
+            Add("drop", c.drop);
+            Add("release", c.drop);
         }
     }
 }
