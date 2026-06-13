@@ -86,10 +86,12 @@ namespace FileIOProject
 
                 while (loop)
                 {
-                    Console.WriteLine(" ----------------------------------------------------- ");
-                    Console.WriteLine("Whatdya wanna like do my dude?");
-                    Console.WriteLine("Type in a verb and a subject, like 'look room' or 'look npc' or 'look self' or 'attack npc' or 'attack self' or whatever you wanna do.");
-                    Console.WriteLine(" ----------------------------------------------------- ");
+                //Console.WriteLine(" ----------------------------------------------------- ");
+                //Console.WriteLine("Whatdya wanna like do my dude?");
+                //Console.WriteLine("Type in a verb and a subject, like 'look room' or 'look npc' or 'look self' or 'attack npc' or 'attack self' or whatever you wanna do.");
+                //Console.WriteLine(" ----------------------------------------------------- ");
+
+                ShowMenu(game);
                     var input = Console.ReadLine();
 
                     Tokenizer t = new Tokenizer();
@@ -114,6 +116,20 @@ namespace FileIOProject
                     }
                 }
             
+        }
+        static void ShowMenu(Game game)
+        {
+            var room = game.Player.location;
+            Console.WriteLine(" ----------------------------------------------------- ");
+            Console.WriteLine("You are in " + room.description);
+            Console.WriteLine(" ------------------------------------------------------ ");
+            Console.WriteLine("Whatcha wanna do?");
+            Console.WriteLine("");
+            Console.WriteLine("  [look]        - look around");
+            Console.WriteLine("  [inventory]   - check your inventory");
+            Console.WriteLine("  [save]        - save your game");
+            Console.WriteLine("  [quit]        - quit");
+
         }
     }
 }

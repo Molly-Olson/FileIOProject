@@ -122,7 +122,7 @@ namespace FileIOProject
                     return;
                 }
                 Console.WriteLine("You moved to the " + direction.Value + ".");
-                this.look(game, tokens);
+               // this.look(game, tokens); I'm trying to display a menu not a double weird message
             }else
             {
                 Console.WriteLine("Pick a direction, homie! It ain't life or death or nothin... it's just a game dude. Chill.");

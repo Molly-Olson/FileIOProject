@@ -55,6 +55,11 @@ namespace FileIOProject
             trap.Name = "a spiked pit trap";
             trap.Description = "Watch your step, bro! You might fall into this spiked pit trap and lose some health!";
 
+            Item cake = new Item();
+            cake.types.Add(ItemType.Consumable);
+            cake.Name = "a slice of cake";
+            cake.Description = "Let them eat cake!";
+
             player.inventory.Add(key);
             player.inventory.Add(chest);
 
@@ -66,45 +71,43 @@ namespace FileIOProject
             //start.player.Add(new Player { Name = Console.ReadLine() }); I want the player to play too no?
 
             _ = new Room();
-            start.description = "Welcome to the starting room. You see a door to the north and a door to the east.";
+            start.description = "Starting room. You see a door to the north and a door to the east.";
 
             this.rooms.Add(start);
 
             Room east = new Room();
-            east.description = "Welcome to the east room. It is empty except for a door to the south.";
-
+            east.description = "East room. It is empty except for a door to the south.";
             this.rooms.Add(east);
 
             start.east = east;
             east.west = start;
 
             Room eastAgain = new Room();
-            eastAgain.description = "Well, like now you're just going in circles silly!";
-
+            eastAgain.description = "Well, like now you're just going in circles silly!";  // ok I am gettin so frustrated! I can't figure out these stupid messages
             this.rooms.Add(eastAgain);
 
             east.east = eastAgain;
             eastAgain.west = east;
              
             Room north = new Room();
-            north.description = "This is the north room. Check out the door to the south.";
-
+            north.description = "North room. Check out the door to the south.";
             this.rooms.Add(north);
 
             Room south = new Room();
-            south.description = "This is the south room. It's pretty empty, but you can see a door to the north.";
-
+            south.description = "South room. It's pretty empty, but you can see a door to the north.";
             this.rooms.Add(south);
 
             Room northEast = new Room();
-            northEast.description = "This is the northeast room. It's pretty empty, but you can see a door to the south.";
-
+            northEast.description = "Northeast room. It's pretty empty, but you can see a door to the south.";
             this.rooms.Add(northEast);
 
             Room west = new Room();
-            west.description = "This is the west room. It's pretty empty, but you can see a door to the east.";
-
+            west.description = "West room. It's pretty empty, but you can see a door to the east.";
             this.rooms.Add(west);
+
+            Room tower = new Room();
+            tower.description = "Tower room. It's pretty empty, but you can see a door to the south.";
+            this.rooms.Add(tower);
 
             start.north = north;
             north.south = start;
@@ -112,11 +115,13 @@ namespace FileIOProject
             north.south = east;
             west.north = northEast;
             northEast.south = west;
+            tower.south = northEast;
 
             north.items.Add(sword);
             east.items.Add(potion);
             northEast.items.Add(knightSuit);
             west.items.Add(trap);
+            tower.items.Add(cake);
 
 
         }
